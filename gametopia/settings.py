@@ -63,6 +63,8 @@ REST_FRAMEWORK = {'DEFUALT_PERMISSION_CLASSES': [
     'rest_framework.permission.AllowAny'
 ]}
 
+AUTH_USER_MODEL= 'Users.User'
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'gametopia.urls'
