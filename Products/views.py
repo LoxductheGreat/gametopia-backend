@@ -1,16 +1,19 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
 from . models import *
 from . serializer import *
-from rest_framework.response import Response
+    
+@api_view(['GET'])
+def get_all_products(request):
+    product = Product.objects.all().values()
+    serializer = ProductSerialzer(product, many=True)
+    return Response(serializer.data)
 
 
-# Create your views here.
-
-class ProductView(APIView):
-    def get(self, request):
-        output = [{'name': output.name}
-                  for output in Product.objects.all()]
-        return Response(output)
 
 

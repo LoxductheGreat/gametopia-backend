@@ -1,7 +1,9 @@
 from rest_framework import serializers
-from .models import *
+from . models import *
 
 class ProductSerialzer(serializers.ModelSerializer):
-    class Meta:
+    class Meta(object):
         model = Product
-        fields = ['name', 'brand_name', 'genre', 'developer', 'publisher']
+        fields = ['id', 'name', 'brand_name', 'genre', 'developer', 'publisher','release_date']
+        extra_kwargs = {'release_date':{'format': '%d-%b-%Y'}}
+

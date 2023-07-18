@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django.urls import path
-from Products.views import *
+from . import views
 
 urlpatterns = [
-   path('', ProductView.as_view(), name='product')
+   path('', views.get_all_products, name='product')
 ]

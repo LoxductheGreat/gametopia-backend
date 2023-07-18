@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail  
+
 class UserProfileManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
@@ -43,8 +48,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserProfileManager()
 
-    
-
-# class ChangePassword(models.Model):
-#     old_password = models.CharField(max_length=32)
-#     new_password = models.CharField(max_length=32)
